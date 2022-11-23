@@ -1,17 +1,39 @@
 import React, { Component } from 'react';
 import moment from "moment";
-// all components are going to be nbested under the parent component here
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import PortfolioContainer from "./portfolio/portfolio-container";
+import NavigationContainer from "./navigation/navigation-container";
+import Home from "./pages/home";
+import About from "./pages/about";
+
+// all components are going to be nested under the parent component here
+// component imports need to be capitolized!!!
+
+//jsx for display is going to go here
 export default class App extends Component {
   render() {
-    return ( //html for display is going to go here
+    return (                                    
       <div className='app'>
-        <h1>Josh Maurer's Portfolio</h1>
-        <h2>React Project</h2>
+        <Router>
+          <div>
+            <NavigationContainer />
 
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/about-me" component={About} />
+            </Switch>
+          </div>
+        </Router>
+
+        <h1>Josh Maurer's Portfolio</h1>
+       
         <div>
           {moment().format('MMMM Do YYYY, h:mm:ss a')}
         </div>
-    
+
+        <PortfolioContainer />
+
       </div>
     );
   }
